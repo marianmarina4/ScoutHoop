@@ -1,0 +1,50 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% block title %}Perfil{% endblock %}
+{% block content %}
+<main role="main">
+        <form class="container-profile" action="" method="post" enctype="multipart/form-data">{% csrf_token %}
+          <div class="container-profile-avatar">
+            <!-- Previa del avatar -->
+            <div class="wrap-avatar">
+              {% if request.user.profile.avatar %}
+                <img src="{{request.user.profile.avatar.url}}" class="avatar">
+                <p>Eliminar Imagen <input type="checkbox" class="form-check-input" id="avatar-clear" name="avatar-clear" /></p>
+              {% else %}
+                <img src="{% static 'registration/img/no-avatar.jpg' %}" class="avatar">
+              {% endif %}
+              <input type="file" name="avatar" class="form-control-file profile-inputs" id="id_avatar">
+            </div>
+          </div>
+            <!-- Formulario -->
+          <div class="profile-form">
+            <h3 class="title profile-title">Editar perfil</h3>
+            <div class="profile-label">
+              <label>Edad:</label>
+              {{form.age}} 
+            </div>
+            <div class="profile-label">
+              <label>Teléfono:</label>
+              {{form.phone_number}} 
+            </div>
+            <div class="profile-label">
+              <label>Email:</label>
+              <input type="email" class="form-control" value="{{request.user.email}}" readonly>
+              <a class="links" href="{% url 'profile_email' %}">Editar </a>
+            </div>
+            <div class="profile-label">
+              <label>Biografía:</label>
+              {{form.bio}}
+            </div>
+            <h3>Jugadores:</h3>
+            <ul>
+               {% for player in user.profile.players.all %} 
+                <li>{{ player.first_name }} {{ player.last_name }} - <a href="{% url 'player_edit' player.pk %}">Editar</a></li>
+               {% endfor %} 
+            </ul>
+            <a href="{% url 'player_add' %}">Agregar Jugador</a>
+            <input type="submit" class="button profile-button" value="Actualizar">
+          </div>
+        </form>
+</main>
+{% endblock %}

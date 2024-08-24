@@ -1,0 +1,19 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% block title %}Email{% endblock %}
+{% block content %}
+<main role="main">
+    <form class="container-form"  action="" method="post">{% csrf_token %}
+      <h3 class="title">Email</h3>
+      <p> Cambie su email a continuación </p>
+      {{form.email}}
+      {{form.email.errors}}
+      {% if 'update' in request.GET %}
+      <p class="confirm"> Su email se ha actualizado con éxito! </p>
+      {% endif %}
+      <div class="confirm-form">
+        <input type="submit" class="button" value="Actualizar">
+        </div>
+    </form>
+</main>
+{% endblock %}

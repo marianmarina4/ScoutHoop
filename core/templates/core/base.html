@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>{% block title %}{% endblock %}</title>
+    {% load static %}
+    <!-- Css -->
+    <link href="{% static 'core/css/styles.css' %}" rel="stylesheet">
+</head>
+<body>
+    <div class="wrapper">
+        <header>
+            <!-- Navbar -->
+            <nav class="navbar">
+                <a class="navbar-brand" href="{% url 'home' %}">BasketMatch</a>
+                <div class="navbar-items">
+                    <ul class="navbar-nav">
+                        <li><a class="nav-link" href="#">Jugadores</a></li>
+                        <li><a class="nav-link" href="#">Agentes</a></li>
+                    </ul>
+                    <form class="search">
+                        <input type="search" placeholder="Buscar">
+                        <button class="button" type="submit">Buscar</button>
+                    </form>
+                    <ul class="navbar-nav">
+                    <div class="account-buttons">
+                        {% if not request.user.is_authenticated %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'login' %}">Iniciar sesión</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'register' %}">Registrarse</a>
+                        </li>
+                        {% else %}
+                        <li class="container-logout">
+                            <div class="dropdown">
+                                <a class="nav-link" href="#" role="button">Cuenta</a>
+                                <div class="dropdown-content">
+                                    <a href="{% url 'profile' %}">Editar Perfil</a>
+                                    <a href="#">Añadir Jugador</a>
+                                </div>
+                            </div>
+                            <form action="{% url 'logout' %}" method="post">
+                                {% csrf_token %}
+                                <input class="button" type="submit" value="Logout">
+                            </form>
+                        </li>
+                        {% endif %}
+                    </div>
+                    </ul>
+                </div>
+            </nav>
+        </header>
+        <main class="content">
+            <!-- Contenido -->
+            {% block content %}
+            {% endblock %}
+        </main>
+        <footer class="footer">
+            <div class="footer-content">
+                <p>&copy; 2024 BasketMatch. Todos los derechos reservados.</p>
+                <ul class="footer-links">
+                    <li><a href="#about">Sobre Nosotros</a></li>
+                    <li><a href="#services">Servicios</a></li>
+                    <li><a href="#contact">Contacto</a></li>
+                </ul>
+                <div class="footer-social">
+                    <a href="https://facebook.com" target="_blank">Facebook</a>
+                    <a href="https://twitter.com" target="_blank">Twitter</a>
+                    <a href="https://instagram.com" target="_blank">Instagram</a>
+                </div>
+            </div>
+        </footer>
+    </div>
+</body>
+</html>

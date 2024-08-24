@@ -1,0 +1,28 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% block title %}Registrarse{% endblock %}
+{% block content %}
+<main role="main">
+    <form class="container-form"  action="" method="post">{% csrf_token %}
+      <h3 class="title">Registrarse</h3>
+      {{form.username}}
+      {{form.username.errors}}
+      {{form.first_name}}
+      {{form.first_name.errors}}
+      {{form.last_name}}
+      {{form.last_name.errors}}
+      {{form.email}}
+      {{ form.email.help_text }}
+      {{ form.email.errors }}
+      {{form.password1}}
+      {{form.password1.errors}}
+      {{form.password2}}
+      {{ form.password2.errors }}
+      {{ form.non_field_errors }}
+      <div class="confirm-form">
+        <input type="submit" class="button" value="Confirmar">
+        <a class="links" href="{% url 'login'%}" >¿Ya tienes una cuenta?</a>
+      </div >
+    </form>
+</main>
+{% endblock %}
