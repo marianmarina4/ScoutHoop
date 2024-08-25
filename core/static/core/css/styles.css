@@ -55,11 +55,13 @@ a {
 
 .title {
     display: flex;
+    align-items: center;
     color: orange;
     font-size: 2rem; /* Tamaño de letra más grande */
     text-decoration: none;
     font-weight: bold;
     text-shadow: 2px 1px black;
+    text-align: center;
     justify-content: center;
     margin: 1rem;
     margin-top: 2rem;
@@ -209,7 +211,7 @@ nav .button {
     box-shadow: inherit
 }
 
-.confirm-form {
+.confirm-buttons {
     display: flex;
     flex-direction: column;
     margin: auto;
@@ -289,6 +291,31 @@ nav .button {
 .profile-button {
     margin: auto;
     width: 50%;
+}
+
+/* Add Player */
+
+.container-add {
+    display: flex;
+    justify-content: center;
+    padding: 5rem;
+    column-count: 2;
+    column-gap: 5rem;
+}
+
+.add-form{
+    display: flex;
+    width: 25%;
+    align-items: flex-start;
+    flex-direction: column;
+}
+
+.add-label{
+    display: flex;
+    flex-direction: column;
+    text-shadow: 1px 1px black;
+    margin-top: 1.5rem;
+    width: 100%;
 }
 
 

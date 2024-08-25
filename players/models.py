@@ -6,7 +6,7 @@ class Player(models.Model):
     agent = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='players')
     first_name = models.CharField(max_length=100)
     last_name = models.CharField(max_length=100)
-    height = models.DecimalField(max_digits=3, decimal_places=2)
+    height = models.DecimalField(max_digits=3, decimal_places=2, default=0.0)
     weight = models.DecimalField(max_digits=5, decimal_places=1, default=0.0)
     position = models.CharField(max_length=20, choices=[('base', 'Base'), ('escolta', 'Escolta'), ('alero', 'Alero'), ('alapivot', 'Ala-Pivot'), ('pivot', 'Pivot')])
     last_teams = models.TextField(null=True, blank=True)

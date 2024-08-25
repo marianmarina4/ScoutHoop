@@ -1,10 +1,41 @@
-{% extends 'base.html' %}
+{% extends 'core/base.html' %}
 
 {% block content %}
-  <h2>{% if player %}Editar Jugador{% else %}Agregar Jugador{% endif %}</h2>
-  <form method="post">
+  <h2 class="title">{% if player %}Editar Jugador{% else %}Agregar Jugador{% endif %}</h2>
+  <form class="container-add" method="post">
     {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit" class="btn btn-primary">Guardar</button>
+    <div class="add-form">
+      <div class="add-label">
+      <label>Nombre:</label>
+        {{ form.first_name }}
+      </div>
+      <div class="add-label">
+      <label>Apellido:</label>
+        {{ form.last_name }}
+        </div>
+        <div class="add-label">
+      <label>Altura (cm):</label>
+        {{ form.height }}
+        </div>
+        <div class="add-label">
+      <label>Peso (kg):</label>
+        {{ form.weight }}
+        </div>
+        <div class="add-label">
+      <label>Posición:</label>
+        {{ form.position }}
+        </div>
+        <div class="add-label">
+      <label>Equipo Actual:</label>
+        {{ form.current_team }}
+        </div>
+        <div class="add-label">
+      <label>Estado:</label>
+        {{ form.status }}
+        </div>
+        <div class="confirm-buttons">
+      <button type="submit" class="button">Guardar</button>
+      </div>
+    </div>
   </form>
 {% endblock %}
