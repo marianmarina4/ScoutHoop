@@ -49,6 +49,12 @@ class ProfileUpdate(UpdateView):
         profile, created = Profile.objects.get_or_create(user=self.request.user)
         return profile
     
+    def get_initial(self):
+        initial = super(ProfileUpdate, self).get_initial()
+        initial['first_name'] = self.request.user.first_name
+        initial['last_name'] = self.request.user.last_name
+        return initial
+    
         
 @method_decorator(login_required, name='dispatch')
 class EmailUpdate(UpdateView):
@@ -67,3 +73,4 @@ class EmailUpdate(UpdateView):
          form.fields['email'].widget = forms.EmailInput(attrs={'class': 'form-control', 'placeholder': 'Email'})
          
          return form
+     

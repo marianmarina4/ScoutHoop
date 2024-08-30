@@ -315,6 +315,10 @@ nav .button {
     width: fit-content;
 }
 
+.profile-update-label a {
+    margin: inherit;
+    margin-top: 0;
+}
 
 .profile-update-rows{
     display: flex;

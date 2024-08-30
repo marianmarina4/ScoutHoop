@@ -33,7 +33,10 @@ class EmailForm(forms.ModelForm):
         return email
 
 class ProfileForm(forms.ModelForm):
-     class Meta:
+    first_name = forms.CharField(max_length=30, required=False, widget=forms.TextInput(attrs={'class': 'form-control-update'}))
+    last_name = forms.CharField(max_length=30, required=False , widget=forms.TextInput(attrs={'class': 'form-control-update'}))
+    
+    class Meta:
         model = Profile
         fields = ['avatar', 'age','phone_number','bio', 'ig_link', 'x_link', 'ln_link', 'fbk_link']
         widgets = {
@@ -46,4 +49,12 @@ class ProfileForm(forms.ModelForm):
             'ln_link' : forms.TextInput(attrs={'class': 'form-control-update'}),
             'fbk_link' : forms.TextInput(attrs={'class': 'form-control-update'}),
         }
+        
+    def save(self, commit=True):
+        user = self.instance.user
+        user.first_name = self.cleaned_data['first_name']
+        user.last_name = self.cleaned_data['last_name']
+        if commit:
+            user.save()
+        return super(ProfileForm, self).save(commit)
         
