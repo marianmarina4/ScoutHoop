@@ -1,17 +1,31 @@
 from django.db import models
 from registration.models import Profile
 
+
+def custom_upload_to(instance, filename):
+    old_instance = Player.objects.get(pk=instance.pk)
+    old_instance.avatar.delete()
+    return 'players/' + filename
+
 class Player(models.Model):
-    
     agent = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='players')
-    first_name = models.CharField(max_length=100)
+    avatar = models.ImageField(upload_to=custom_upload_to, null=True, blank=True)
+    first_name = models.CharField( max_length=100)
     last_name = models.CharField(max_length=100)
+    birthday = models.DateField()
     height = models.DecimalField(max_digits=3, decimal_places=2, default=0.0)
     weight = models.DecimalField(max_digits=5, decimal_places=1, default=0.0)
     position = models.CharField(max_length=20, choices=[('base', 'Base'), ('escolta', 'Escolta'), ('alero', 'Alero'), ('alapivot', 'Ala-Pivot'), ('pivot', 'Pivot')])
-    last_teams = models.TextField(null=True, blank=True)
-    current_team = models.CharField(max_length=100, null=True, blank=True)
     status = models.CharField(max_length=20, choices=[('available', 'Disponible'), ('not available', 'No Disponible')])
     
     def __str__(self):
         return f'{self.first_name} {self.last_name}'
+
+
+class Team(models.Model):
+    team_name = models.CharField(max_length=100)
+    country = models.CharField(max_length=100)
+    year_played = models.PositiveIntegerField()
+
+    def __str__(self):
+        return f'{self.team_name} ({self.country}) - {self.year_played}'

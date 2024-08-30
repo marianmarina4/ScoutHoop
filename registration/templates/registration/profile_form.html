@@ -3,10 +3,10 @@
 {% block title %}Perfil{% endblock %}
 {% block content %}
 <main role="main">
-        <form class="container-profile" action="" method="post" enctype="multipart/form-data">{% csrf_token %}
-          <div class="container-profile-avatar">
+        <form class="container-update" action="" method="post" enctype="multipart/form-data">{% csrf_token %}
+          <div class="container-update-avatar">
             <!-- Previa del avatar -->
-            <div class="wrap-avatar">
+            <div class="wrap-update-avatar">
               {% if request.user.profile.avatar %}
                 <img src="{{request.user.profile.avatar.url}}" class="avatar">
                 <p>Eliminar Imagen <input type="checkbox" class="form-check-input" id="avatar-clear" name="avatar-clear" /></p>
@@ -17,33 +17,63 @@
             </div>
           </div>
             <!-- Formulario -->
-          <div class="profile-form">
-            <h3 class="title profile-title">Editar perfil</h3>
-            <div class="profile-label">
+          <div class="profile-update-form">
+            <h3 class="title profile-update-title">Editar perfil</h3>
+            <div class="profile-update-inputs">
+            <div class="profile-update-label">
               <label>Edad:</label>
               {{form.age}} 
             </div>
-            <div class="profile-label">
+            <div class="profile-update-label">
               <label>Teléfono:</label>
               {{form.phone_number}} 
             </div>
-            <div class="profile-label">
+            <div class="profile-update-label">
               <label>Email:</label>
-              <input type="email" class="form-control" value="{{request.user.email}}" readonly>
-              <a class="links" href="{% url 'profile_email' %}">Editar </a>
+              <input type="email" class="form-control-update" value="{{request.user.email}}" readonly>
+              <a class="links" href="{% url 'profile_email' %}">Editar</a>
             </div>
-            <div class="profile-label">
+            <div class="profile-update-label">
+              <label>Password:</label>
+              <input type="email" class="form-control-update" value="{{request.user.email}}" readonly>
+              <a class="links" href="{% url 'password_change' %}">Editar</a>
+            </div>
+            <div class="profile-update-label">
+              <label>Instagram:</label>
+              {{form.ig_link}}
+            </div>
+            <div class="profile-update-label">
+              <label>X:</label>
+              {{form.x_link}}
+            </div>
+            <div class="profile-update-label">
+              <label>Linkedin:</label>
+              {{form.ln_link}}
+            </div>
+            <div class="profile-update-label">
+              <label>Facebook:</label>
+              {{form.fbk_link}}
+            </div>
+            <div class="profile-update-label">
               <label>Biografía:</label>
               {{form.bio}}
             </div>
-            <h3>Jugadores:</h3>
+            <div class="profile-update-label">
+              <label>Jugadores:</label>
             <ul>
                {% for player in user.profile.players.all %} 
-                <li>{{ player.first_name }} {{ player.last_name }} - <a href="{% url 'player_edit' player.pk %}">Editar</a></li>
+                <li>{{ player.first_name }} {{ player.last_name }} - 
+                  <a class="links" href="{% url 'player_edit' player.pk %}">Editar</a>
+                  <a class="links" href="{% url 'player_delete' player.pk %}">Eliminar</a>
+                </li>
                {% endfor %} 
             </ul>
-            <a href="{% url 'player_add' %}">Agregar Jugador</a>
-            <input type="submit" class="button profile-button" value="Actualizar">
+            <a class="no-margin links" href="{% url 'player_add' %}">Agregar Jugador</a>
+            </div>
+          </div>
+            <div class="confirm-buttons">
+              <input type="submit" class="button min" value="Actualizar">
+            </div>
           </div>
         </form>
 </main>

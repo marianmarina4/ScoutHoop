@@ -17,15 +17,17 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
+from profiles.urls import profiles_patterns
 
 urlpatterns = [
-    # Path Auth
     path('', include('core.urls')), 
+    # Path Admin
+    path('admin/', admin.site.urls),
+    # Path Auth
     path('accounts/', include('django.contrib.auth.urls')),
     path('accounts/', include('registration.urls')),
     path('players/', include('players.urls')),
-    # Path Admin
-    path('admin/', admin.site.urls),
+    path('profiles/',include(profiles_patterns)),
 ]
 
 if settings.DEBUG:
