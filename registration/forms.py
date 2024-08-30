@@ -38,12 +38,12 @@ class ProfileForm(forms.ModelForm):
         fields = ['avatar', 'age','phone_number','bio', 'ig_link', 'x_link', 'ln_link', 'fbk_link']
         widgets = {
             'avatar': forms.ClearableFileInput(attrs={'class': 'form-control-file'}),
-            'age': forms.NumberInput(attrs={'class': 'form-control-update', 'placeholder': 'Edad'}),
-            'phone_number': forms.TextInput(attrs={'class': 'form-control-update', 'type':'number','placeholder': 'Número de teléfono'}),
-            'bio': forms.Textarea(attrs={'class': 'form-control-update', 'placeholder': 'Descripción personal'}),
-            'ig_link' : forms.TextInput(attrs={'class': 'form-control-update', 'placeholder': 'www.instagram.com/example/'}),
-            'x_link' : forms.TextInput(attrs={'class': 'form-control-update', 'placeholder': 'www.x.com/example'}),
-            'ln_link' : forms.TextInput(attrs={'class': 'form-control-update', 'placeholder': 'www.linkedin.com/in/example/'}),
-            'fbk_link' : forms.TextInput(attrs={'class': 'form-control-update', 'placeholder': 'www.facebook.com/example/'}),
+            'age': forms.NumberInput(attrs={'class': 'form-control-update'}),
+            'phone_number': forms.TextInput(attrs={'class': 'form-control-update', 'type':'number'}),
+            'bio': forms.Textarea(attrs={'class': 'form-control-update'}),
+            'ig_link' : forms.TextInput(attrs={'class': 'form-control-update'}),
+            'x_link' : forms.TextInput(attrs={'class': 'form-control-update'}),
+            'ln_link' : forms.TextInput(attrs={'class': 'form-control-update'}),
+            'fbk_link' : forms.TextInput(attrs={'class': 'form-control-update'}),
         }
         
