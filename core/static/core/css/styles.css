@@ -255,7 +255,6 @@ nav .button {
     justify-content: center;
     padding: 5rem;
     column-count: 3;
-    column-gap: 5rem;
 }
 
 .container-update-avatar {
@@ -283,8 +282,8 @@ nav .button {
 
 .profile-update-title {
     margin: 0;
-    justify-content: inherit;
-    flex-wrap: nowrap;
+    width: 100%;
+   justify-content: start;
 }
 
 .profile-update-form {
@@ -292,19 +291,20 @@ nav .button {
     flex-wrap: wrap;
     justify-content: center;
     width: 50%;
-    gap: 1rem;
+    padding-left: 5rem;
 }
 
 .profile-update-inputs{
     display: flex;
     flex-wrap: wrap;
+    width: 100%;
 }
 
 .profile-update-label{
     display: flex;
     flex-direction: column;
     text-shadow: 1px 1px black;
-    align-items: center;
+    align-items: self-start;
     font-size: large;
     margin-top: 1.5rem;
     width: 50%;
@@ -315,12 +315,13 @@ nav .button {
     width: fit-content;
 }
 
+
 .profile-update-rows{
     display: flex;
 }
 
 .form-control-update{
-    width: 50%;
+    width: 75%;
 }
 
 
