@@ -13,11 +13,11 @@
         <header>
             <!-- Navbar -->
             <nav class="navbar">
-                <a class="navbar-brand" href="{% url 'home' %}">BasketMatch</a>
+                <a class="navbar-brand" href="{% url 'home' %}">ScoutHoop</a>
                 <div class="navbar-items">
                     <ul class="navbar-nav">
-                        <li><a class="nav-link" href="#">Jugadores</a></li>
-                        <li><a class="nav-link" href="#">Agentes</a></li>
+                        <li><a class="nav-link" href="{% url 'player_list' %}">Jugadores</a></li>
+                        <li><a class="nav-link" href="{% url 'profile_list' %}">Agentes</a></li>
                     </ul>
                     <form class="search">
                         <input type="search" placeholder="Buscar">
@@ -59,7 +59,7 @@
         </main>
         <footer class="footer">
             <div class="footer-content">
-                <p>&copy; 2024 BasketMatch. Todos los derechos reservados.</p>
+                <p>&copy; 2024 ScoutHoop. Todos los derechos reservados.</p>
                 <ul class="footer-links">
                     <li><a href="#about">Sobre Nosotros</a></li>
                     <li><a href="#services">Servicios</a></li>

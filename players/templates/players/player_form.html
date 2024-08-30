@@ -1,40 +1,62 @@
 {% extends 'core/base.html' %}
-
+{% load static %}
 {% block content %}
-  <h2 class="title">{% if player %}Editar Jugador{% else %}Agregar Jugador{% endif %}</h2>
-  <form class="container-add" method="post">
+  <h2 class="title">{% if player %}Editar jugador{% else %}Agregar jugador{% endif %}</h2>
+  <form class="container-add" method="post" enctype="multipart/form-data">
     {% csrf_token %}
+    <div class="container-profile-avatar">
+      <!-- Previa del avatar -->
+      <div class="wrap-avatar">
+        {% if player.avatar %}
+          <img src="{{ player.avatar.url }}" class="avatar">
+          <p>Eliminar Imagen <input type="checkbox" class="form-check-input" id="avatar-clear" name="avatar-clear" /></p>
+        {% else %}
+          <img src="{% static 'registration/img/no-avatar.jpg' %}" class="avatar">
+        {% endif %}
+        <input type="file" name="avatar" class="form-control-file profile-inputs" id="id_avatar">
+      </div>
+    </div>
     <div class="add-form">
       <div class="add-label">
-      <label>Nombre:</label>
+        <label>Nombre:</label>
         {{ form.first_name }}
       </div>
       <div class="add-label">
-      <label>Apellido:</label>
+        <label>Apellido:</label>
         {{ form.last_name }}
-        </div>
-        <div class="add-label">
-      <label>Altura (cm):</label>
+      </div>
+      <div class="add-label">
+        <label>Nacimiento:</label>
+        {{ form.birthday }}
+      </div>
+      <div class="add-label">
+        <label>Altura (cm):</label>
         {{ form.height }}
-        </div>
-        <div class="add-label">
-      <label>Peso (kg):</label>
+      </div>
+      <div class="add-label">
+        <label>Peso (kg):</label>
         {{ form.weight }}
-        </div>
-        <div class="add-label">
-      <label>Posición:</label>
-        {{ form.position }}
-        </div>
-        <div class="add-label">
-      <label>Equipo Actual:</label>
-        {{ form.current_team }}
-        </div>
-        <div class="add-label">
-      <label>Estado:</label>
+      </div>
+      <div class="add-label">
+        <label>Estado:</label>
         {{ form.status }}
-        </div>
-        <div class="confirm-buttons">
-      <button type="submit" class="button">Guardar</button>
+      </div>
+      <div class="add-label">
+        <label>Posición:</label>
+        {{ form.position }}
+      </div>
+      <div class="add-label">
+        <label>Equipos:</label>
+        <ul>
+          {% for team in teams %} 
+            <li>{{ team.team_name }} - {{ team.country }} - {{ team.year_played }} 
+            </li>
+          {% endfor %} 
+        </ul>
+        <a class="links" href="{% url 'add_team' %}" >Agregar equipo</a>
+      </div>
+      <div class="confirm-buttons">
+        <button type="submit" class="button min">Guardar</button>
       </div>
     </div>
   </form>

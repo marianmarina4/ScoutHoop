@@ -1,0 +1,25 @@
+{% extends 'core/base.html' %}
+
+{% block content %}
+  <h2 class="title">Agregar equipo</h2>
+  <form class="container-add" method="post">
+    {% csrf_token %}
+    <div class="add-form">
+      <div class="add-label">
+        <label>Nombre de equipo:</label>
+        {{ form.team_name }}
+      </div>
+      <div class="add-label">
+        <label>País:</label>
+        {{ form.country }}
+      </div>
+      <div class="add-label">
+        <label>Año en el que jugó:</label>
+        {{ form.year_played }}
+      </div>
+      <div class="confirm-buttons">
+        <button type="submit" class="button">Agregar</button>
+      </div>
+    </div>
+  </form>
+{% endblock %}
