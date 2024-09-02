@@ -3,6 +3,7 @@
 {% block title %}{{profile.user}}{% endblock %}
 {% block content %}
 <main role="main">
+<div class="wrapper-profile-detail">
   <form class="container-profile-detail" action="" method="post" enctype="multipart/form-data">{% csrf_token %}
     <div class="wrap-profile-info">
       <div class="container-profile-avatar">
@@ -16,21 +17,21 @@
         </div>
       </div>
         <!-- Perfil del Agente -->
-      <div class="profile-form">
-        <h3 class="title profile-title">{{profile.user.first_name}} {{profile.user.last_name}}</h3>
-        <div class="profile-label">
-          <label>Edad:</label>
-          {{profile.age}} 
-        </div>
-        <div class="profile-label">
+      <div class="profile-detail-form">
+        <h3 class="title profile-detail-title">{{profile.user.first_name}} {{profile.user.last_name}}</h3>
+        <div class="profile-detail-label">
           <label>Teléfono:</label>
           {{profile.phone_number}} 
         </div>
-        <div class="profile-label">
+        <div class="profile-detail-label">
           <label>Email:</label>
           {{profile.user.email}}
         </div>
-        <div class="profile-label">
+        <div class="profile-detail-label">
+          <label>País:</label>
+          {{profile.country}} 
+        </div>
+        <div class="profile-detail-label">
           <label>Biografía:</label>
           {{profile.bio}}
         </div>
@@ -38,42 +39,11 @@
     </div>
 
     <!-- Lista de jugadores -->
-    <div class="scroll-container">
-      <div class="list-players">
-        {% for player in player_list %}
-          <div class="card-players">
-            {% if player.avatar %}
-              <img src="{{player.avatar.url}}"class="list-avatar-players" >
-            {% else %}
-              <img src="{% static 'registration/img/no-avatar.jpg' %}" class="list-avatar-players">
-            {% endif %}
-            <b>{{player.first_name}} {{player.last_name}}</b> 
-            <div class="player-label">
-              <label><b>Posición:</b></label> 
-              {{player.get_position_display}}
-            </div>
-            <div class="player-label">
-              <label><b>Altura:</b></label>
-              {{player.height}}
-            </div>
-            <div class="player-label">
-              <label><b>Clase:</b></label>
-              {{player.birthday.year}}
-            </div>
-            <div class="player-label">
-              <label><b>Agente:</b></label>
-              <a class="links" href="">
-              {{player.agent.user.last_name}}
-              </a>
-            </div>
-            <div class="player-label">
-              <label><b>Estado:</b></label>
-              {{player.get_status_display}}
-            </div>
-          </div>
-        {% endfor %}
-      </div>
+    <div>
+      <h3 class="subtitle"> Jugadores: </h3>
+      {% include 'players/player_card.html'%}
     </div>
   </form>
+  </div>
 </main>
 {% endblock %}

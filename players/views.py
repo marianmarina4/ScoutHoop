@@ -44,6 +44,10 @@ class PlayerUpdateView(UpdateView):
     form_class = PlayerForm
     template_name = 'players/player_form.html'
 
+    def form_valid(self, form):
+        # Asegúrate de que los datos del formulario se guarden correctamente
+        return super().form_valid(form)
+
     def get_success_url(self):
         return reverse_lazy('profile')
 
@@ -73,8 +77,15 @@ class PlayerListView(ListView):
         # Filtro por altura
         height = self.request.GET.get('height')
         if height:
-            queryset = queryset.filter(height=height)
-        
+            
+            # Ajustamos para que nos tome bien el decimal reemplazando la coma
+            try:
+                height = height.replace(',', '.')
+                queryset = queryset.filter(height=height)
+            except ValueError as e:
+                pass
+            
+            
         
         # Filtro por año
         birthday_year = self.request.GET.get('birthday_year')
@@ -96,12 +107,14 @@ class PlayerListView(ListView):
         return queryset
         
        
-    
+    # Agregamos los campos al contexto para usarlos fuera de la app
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['positions'] = Player._meta.get_field('position').choices
         context['agents'] = User.objects.all()
-        context['years'] = Player.objects.values_list('birthday__year', flat=True).distinct().order_by('birthday__year') 
+        context['years'] = Player.objects.values_list('birthday__year', flat=True).distinct().order_by('birthday__year')
+        context['status'] = Player._meta.get_field('status').choices
+        context['heights'] = Player.objects.values_list('height', flat=True).distinct().order_by('height')
         return context
 
 

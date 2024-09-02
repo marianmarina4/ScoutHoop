@@ -3,8 +3,9 @@ from registration.models import Profile
 
 
 def custom_upload_to(instance, filename):
-    old_instance = Player.objects.get(pk=instance.pk)
-    old_instance.avatar.delete()
+    if instance.pk:
+        old_instance = Player.objects.get(pk=instance.pk)
+        old_instance.avatar.delete()
     return 'players/' + filename
 
 class Player(models.Model):

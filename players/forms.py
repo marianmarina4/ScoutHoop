@@ -7,14 +7,14 @@ class PlayerForm(forms.ModelForm):
         model = Player
         fields = ['first_name', 'last_name', 'avatar','birthday', 'height', 'weight', 'position', 'status']
         widgets = {
-            'first_name': forms.TextInput(attrs={'class': 'form-control'}),
-            'last_name': forms.TextInput(attrs={'class': 'form-control'}),
-            'avatar' : forms.ClearableFileInput(attrs={'class': 'form-control'}),
-            'birthday' : forms.DateInput(attrs={'class': 'form-control', 'type': 'date'}),
-            'height': forms.NumberInput(attrs={'class': 'form-control'}),
-            'weight': forms.NumberInput(attrs={'class': 'form-control'}),
-            'position': forms.Select(attrs={'class': 'form-control'}),
-            'status': forms.Select(attrs={'class': 'form-control'}),
+            'first_name': forms.TextInput(attrs={'class': 'form-control-update'}),
+            'last_name': forms.TextInput(attrs={'class': 'form-control-update'}),
+            'avatar' : forms.ClearableFileInput(attrs={'class': 'form-control-update'}),
+            'birthday' : forms.DateInput(attrs={'class': 'form-control-update', 'type': 'date'}),
+            'height': forms.NumberInput(attrs={'class': 'form-control-update'}),
+            'weight': forms.NumberInput(attrs={'class': 'form-control-update'}),
+            'position': forms.Select(attrs={'class': 'form-control-update'}),
+            'status': forms.Select(attrs={'class': 'form-control-update'}),
         }
     
 class TeamForm(forms.ModelForm):

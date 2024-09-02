@@ -16,7 +16,7 @@ class Profile(models.Model):
     # Campos Generales
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     avatar = models.ImageField(upload_to=custom_upload_to, null=True, blank=True)
-    age = models.PositiveIntegerField(null=True, blank=True)
+    country = models.CharField(max_length=100, null=True, blank=True)
     bio = models.TextField(null=True, blank=True)
     phone_number = models.CharField(max_length=15, null=True, blank=True)
     ig_link = models.CharField(max_length=100, null=True, blank=True)

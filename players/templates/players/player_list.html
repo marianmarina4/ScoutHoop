@@ -16,7 +16,6 @@
             <option value="{{ value }}">{{ display }}</option>
           {% endfor %}
         </select>
-            
         <label for="agent">Agente:</label>
         <select name="agent" id="agent">
           <option value="">--Todos--</option>
@@ -24,8 +23,6 @@
             <option value="{{ agent.id }}">{{ agent.first_name }} {{ agent.last_name }}</option>
           {% endfor %}
         </select>
-        <label for="height">Altura (cm):</label>
-        <input type="text" name="height" id="height" placeholder="Altura">
         <label for="birthday_year">Clase:</label>
         <select name="birthday_year" id="birthday_year">
           <option value="">--Todos--</option>
@@ -33,46 +30,26 @@
             <option value="{{ year }}">{{ year }}</option>
           {% endfor %}
         </select>
+        <label for="status">Estado:</label>
+        <select name="status" id="status">
+          <option value="">--Todos--</option>
+          {% for value, display in status %}
+            <option value="{{ value }}">{{ display }}</option>
+          {% endfor %}
+        </select>
+        <label for="height">Altura (cm):</label>
+        <select name="height" id="height">
+          <option value="">--Todos--</option>
+          {% for height in heights %}
+            <option value="{{ height }}">{{ height }}</option>
+          {% endfor %}
+        </select>
       </div>
       <button class="button min" type="submit">Filtrar</button>
     </form>
-      {% load static %}
-<div class="scroll-container">
-    <div class="list-players">
-    {% for player in player_list %}
-        <div class="card-players">
-            {% if player.avatar %}
-                <img src="{{player.avatar.url}}"class="list-avatar-players" >
-            {% else %}
-                <img src="{% static 'registration/img/no-avatar.jpg' %}" class="list-avatar-players">
-            {% endif %}
-            <b>{{player.first_name}} {{player.last_name}}</b> 
-            <div class="player-label">
-                <label><b>Posición:</b></label> 
-                {{player.get_position_display}}
-            </div>
-            <div class="player-label">
-                <label><b>Altura:</b></label>
-                {{player.height}}
-            </div>
-            <div class="player-label">
-                <label><b>Clase:</b></label>
-                {{player.birthday.year}}
-            </div>
-            <div class="player-label">
-                <label><b>Agente:</b></label>
-                <a class="links" href="">
-                {{player.agent.user.last_name}}
-                </a>
-            </div>
-            <div class="player-label">
-                <label><b>Estado:</b></label>
-                {{player.get_status_display}}
-            </div>
-        </div>
-    {% endfor %}
-    </div>
-</div>  
+    
+    <!-- Player Card-->
+    {% include 'players/player_card.html'%}
   </div>
 </main>
 {% endblock %}

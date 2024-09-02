@@ -41,8 +41,10 @@ class RegisterView(CreateView):
 @method_decorator(login_required, name='dispatch')
 class ProfileUpdate(UpdateView):
     form_class = ProfileForm
-    success_url = reverse_lazy('profile')
     template_name = 'registration/profile_form.html'
+    
+    def get_success_url(self):
+        return reverse_lazy('profile_detail', kwargs={'username': self.request.user.username})
     
     def get_object(self):
         #Recuperar el objeto que se va a editar

@@ -13,7 +13,7 @@
         {% else %}
           <img src="{% static 'registration/img/no-avatar.jpg' %}" class="avatar">
         {% endif %}
-        <input type="file" name="avatar" class="form-control-file profile-inputs" id="id_avatar">
+        <input type="file" name="avatar" class="form-control-file profile-inputs" id="id_avatar" onchange="previewImage(event)">
       </div>
     </div>
       <!-- Formulario -->
@@ -29,8 +29,8 @@
           {{ form.last_name }}
         </div>
         <div class="profile-update-label">
-          <label>Edad:</label>
-          {{form.age}} 
+          <label>País:</label>
+          {{form.country}} 
         </div>
         <div class="profile-update-label">
           <label>Teléfono:</label>
@@ -86,3 +86,4 @@
   </form>
 </main>
 {% endblock %}
+

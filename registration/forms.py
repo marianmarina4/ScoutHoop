@@ -38,10 +38,10 @@ class ProfileForm(forms.ModelForm):
     
     class Meta:
         model = Profile
-        fields = ['avatar', 'age','phone_number','bio', 'ig_link', 'x_link', 'ln_link', 'fbk_link']
+        fields = ['avatar', 'country','phone_number','bio', 'ig_link', 'x_link', 'ln_link', 'fbk_link']
         widgets = {
             'avatar': forms.ClearableFileInput(attrs={'class': 'form-control-file'}),
-            'age': forms.NumberInput(attrs={'class': 'form-control-update'}),
+            'country': forms.TextInput(attrs={'class': 'form-control-update'}),
             'phone_number': forms.TextInput(attrs={'class': 'form-control-update', 'type':'number'}),
             'bio': forms.Textarea(attrs={'class': 'form-control-update'}),
             'ig_link' : forms.TextInput(attrs={'class': 'form-control-update'}),
