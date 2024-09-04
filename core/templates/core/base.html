@@ -7,6 +7,8 @@
     {% load static %}
     <!-- Css -->
     <link href="{% static 'core/css/styles.css' %}" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Mukta:wght@200;300;400;500;600;700;800&family=SUSE:wght@100..800&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/f0ee15269c.js" crossorigin="anonymous"></script>
 </head>
 <body>
     <div class="wrapper">
@@ -24,31 +26,30 @@
                         <button class="button" type="submit">Buscar</button>
                     </form>
                     <ul class="navbar-nav">
-                    <div class="account-buttons">
-                        {% if not request.user.is_authenticated %}
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url 'login' %}">Iniciar sesión</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url 'register' %}">Registrarse</a>
-                        </li>
-                        {% else %}
-                        <li class="container-logout">
-                            <div class="dropdown">
-                                <a class="nav-link" href="#" role="button">Cuenta</a>
-                                <div class="dropdown-content">
-                                    <a href="{% url 'profile_detail' user.username %}">Perfil</a>
-                                    <a href="{% url 'profile' %}">Editar Perfil</a>
-                                    <a href="{% url 'player_add' %}">Agregar Jugador</a>
-                                </div>
-                            </div>
-                            <form action="{% url 'logout' %}" method="post">
-                                {% csrf_token %}
-                                <input class="button" type="submit" value="Logout">
-                            </form>
-                        </li>
-                        {% endif %}
-                    </div>
+                        <div class="account-buttons">
+                            {% if not request.user.is_authenticated %}
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'login' %}">Iniciar sesión</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'register' %}">Registrarse</a>
+                            </li>
+                            {% else %}
+                                <li class="container-logout">
+                                    <div class="dropdown">
+                                        <a class="nav-link" href="#" role="button">Cuenta</a>
+                                        <div class="dropdown-content">
+                                            <a href="{% url 'profile_detail' user.username %}">Perfil</a>
+                                            <a href="{% url 'profile' %}">Editar Perfil</a>
+                                            <a href="{% url 'player_add' %}">Agregar Jugador</a>
+                                        </div>
+                                    </div>
+                                    <form action="{% url 'logout' %}" method="post">{% csrf_token %}
+                                        <input class="button" type="submit" value="Logout">
+                                    </form>
+                                </li>
+                            {% endif %}
+                        </div>
                     </ul>
                 </div>
             </nav>

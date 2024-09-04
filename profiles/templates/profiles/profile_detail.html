@@ -15,6 +15,20 @@
             <img src="{% static 'registration/img/no-avatar.jpg' %}" class="avatar">
           {% endif %}
         </div>
+        <div class="profile-detail-links">       
+          {% if profile.ig_link %}
+            <a href="{{profile.ig_link}}" target="new"><i class="fa-brands fa-instagram fa-2xl"></i></a>
+          {% endif %}
+          {% if profile.x_link %}
+            <a href="{{profile.x_link}}" target="new"><i class="fa-brands fa-x-twitter fa-2xl"></i></a>
+          {% endif %}
+          {% if profile.ln_link %}
+            <a href="{{profile.ln_link}}" target="new"><i class="fa-brands fa-linkedin-in fa-2xl"></i></a>
+          {% endif %}
+          {% if profile.fbk_link %}
+            <a href="{{profile.fbk_link}}" target="new"><i class="fa-brands fa-facebook-f fa-2xl"></i></a>
+          {% endif %}
+        </div>
       </div>
         <!-- Perfil del Agente -->
       <div class="profile-detail-form">
