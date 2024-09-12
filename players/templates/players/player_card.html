@@ -9,7 +9,7 @@
             {% else %}
                 <img src="{% static 'registration/img/no-avatar.jpg' %}" class="list-avatar-players">
             {% endif %}
-            <b class="card-player-name">{{player.first_name}} {{player.last_name}}</b> 
+            <b class="card-player-name"><a class="links" href="{% url 'player_detail' player.pk %}" >{{player.first_name}} {{player.last_name}}</a></b> 
             <div class="card-player-label">
                 <label><b>Posición:</b></label> 
                 {{player.get_position_display}}

@@ -1,6 +1,6 @@
 from django.db.models.base import Model as Model
 from django.db.models.query import QuerySet
-from django.views.generic import CreateView, DeleteView
+from django.views.generic import CreateView, DeleteView, DetailView
 from django.views.generic.list import ListView
 from django.views.generic.edit import UpdateView
 from django.urls import reverse_lazy
@@ -117,6 +117,10 @@ class PlayerListView(ListView):
         context['heights'] = Player.objects.values_list('height', flat=True).distinct().order_by('height')
         return context
 
+class PlayerDetailView(DetailView):
+    model = Player
+    template_name = 'profiles/profile_detail.html'
+    context_object_name = 'player'
 
 #  Vista de Equipo
 @method_decorator(login_required, name='dispatch')

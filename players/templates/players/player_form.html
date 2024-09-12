@@ -51,14 +51,18 @@
       <div class="profile-update-label">
         <label>Equipos:</label>
       </div>
-      <div class="confirm-buttons">
+      <div class="profile-update-label">
+        <label>Highlights (YouTube URL):</label>
+        {{ form.yt_link }}
+      </div>
+    </div>
+    <div class="confirm-buttons no-padd">
         {% if player %}
           <input type="submit" class="button min" value="Actualizar">
         {% else %}
           <input type="submit" class="button min" value="Agregar">
         {% endif %}
       </div>
-    </div>
   </form>
 </main>
 {% endblock %}

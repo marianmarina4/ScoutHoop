@@ -1,6 +1,12 @@
 {% extends 'core/base.html' %}
 {% load static %}
-{% block title %}{{profile.user}}{% endblock %}
+{% block title %}
+    {% if profile %}
+        {{ profile.user }}
+    {% elif player %}
+        {{ player.first_name }} {{ player.last_name }}
+    {% endif %}
+{% endblock %}
 {% block content %}
 <main role="main">
 <div class="wrapper-profile-detail">
@@ -9,53 +15,103 @@
       <div class="container-profile-avatar">
         <!-- Previa del avatar -->
         <div class="wrap-avatar">
-          {% if profile.avatar %}
-            <img src="{{profile.avatar.url}}" class="avatar">
+          {% if profile and profile.avatar %}
+              <img src="{{ profile.avatar.url }}" class="avatar">
+          {% elif player and player.avatar %}
+              <img src="{{ player.avatar.url }}" class="avatar">
           {% else %}
-            <img src="{% static 'registration/img/no-avatar.jpg' %}" class="avatar">
+              <img src="{% static 'registration/img/no-avatar.jpg' %}" class="avatar">
           {% endif %}
         </div>
-        <div class="profile-detail-links">       
-          {% if profile.ig_link %}
-            <a href="{{profile.ig_link}}" target="new"><i class="fa-brands fa-instagram fa-2xl"></i></a>
-          {% endif %}
-          {% if profile.x_link %}
-            <a href="{{profile.x_link}}" target="new"><i class="fa-brands fa-x-twitter fa-2xl"></i></a>
-          {% endif %}
-          {% if profile.ln_link %}
-            <a href="{{profile.ln_link}}" target="new"><i class="fa-brands fa-linkedin-in fa-2xl"></i></a>
-          {% endif %}
-          {% if profile.fbk_link %}
-            <a href="{{profile.fbk_link}}" target="new"><i class="fa-brands fa-facebook-f fa-2xl"></i></a>
-          {% endif %}
-        </div>
+        {% if profile %}
+          <div class="profile-detail-links">
+              {% if profile.ig_link %}
+                  <a href="{{ profile.ig_link }}" target="new"><i class="fa-brands fa-instagram fa-2xl"></i></a>
+              {% endif %}
+              {% if profile.x_link %}
+                  <a href="{{ profile.x_link }}" target="new"><i class="fa-brands fa-x-twitter fa-2xl"></i></a>
+              {% endif %}
+              {% if profile.ln_link %}
+                  <a href="{{ profile.ln_link }}" target="new"><i class="fa-brands fa-linkedin-in fa-2xl"></i></a>
+              {% endif %}
+              {% if profile.fbk_link %}
+                  <a href="{{ profile.fbk_link }}" target="new"><i class="fa-brands fa-facebook-f fa-2xl"></i></a>
+              {% endif %}
+            </div>
+        {% endif %}
       </div>
-        <!-- Perfil del Agente -->
+        
+        
       <div class="profile-detail-form">
-        <h3 class="title profile-detail-title">{{profile.user.first_name}} {{profile.user.last_name}}</h3>
-        <div class="profile-detail-label">
-          <label>Teléfono:</label>
-          {{profile.phone_number}} 
-        </div>
-        <div class="profile-detail-label">
-          <label>Email:</label>
-          {{profile.user.email}}
-        </div>
-        <div class="profile-detail-label">
-          <label>País:</label>
-          {{profile.country}} 
-        </div>
-        <div class="profile-detail-label">
-          <label>Biografía:</label>
-          {{profile.bio}}
-        </div>
+        <h3 class="title profile-detail-title">
+            {% if profile %}
+                {{ profile.user.first_name }} {{ profile.user.last_name }}
+            {% elif player %}
+                {{ player.first_name }} {{ player.last_name }}
+            {% endif %}
+        </h3>
+        <!-- Perfil del Agente -->
+        {% if profile %}
+          <div class="profile-detail-label">
+              <label>Teléfono:</label>
+              {{ profile.phone_number }}
+          </div>
+          <div class="profile-detail-label">
+              <label>Email:</label>
+              {{ profile.user.email }}
+          </div>
+          <div class="profile-detail-label">
+              <label>País:</label>
+              {{ profile.country }}
+          </div>
+          <div class="profile-detail-label">
+              <label>Biografía:</label>
+              {{ profile.bio }}
+          </div>
+        {% endif %}
+
+        <!-- Perfil del Jugador -->
+      {% if player %}
+          <div class="profile-detail-label">
+              <label>Nacimiento:</label>
+              {{ player.birthday }}
+          </div>
+          <div class="profile-detail-label">
+              <label>Altura:</label>
+              {{ player.height }} m
+          </div>
+          <div class="profile-detail-label">
+              <label>Peso:</label>
+              {{ player.weight }} kg
+          </div>
+          <div class="profile-detail-label">
+              <label>Posición:</label>
+              {{ player.get_position_display }}
+          </div>
+          <div class="profile-detail-label">
+              <label>Estado:</label>
+              {{ player.get_status_display }}
+          </div>
+      {% endif %}
       </div>
     </div>
 
     <!-- Lista de jugadores -->
+    {% if profile %}
     <div>
       <h3 class="subtitle"> Jugadores: </h3>
       {% include 'players/player_card.html'%}
+    </div>
+    
+    {% endif %}
+    <div>
+        <h3 class="subtitle"> Highlights: </h3>
+        {% if player.yt_link %}
+            <iframe width="560" height="315" src="{{ player.youtube_embed }}" 
+                frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                allowfullscreen></iframe>
+        {% endif %}
+        <h3 class="subtitle"> Equipos: </h3>
     </div>
   </form>
   </div>

@@ -5,7 +5,7 @@ class PlayerForm(forms.ModelForm):
      
     class Meta:
         model = Player
-        fields = ['first_name', 'last_name', 'avatar','birthday', 'height', 'weight', 'position', 'status']
+        fields = ['first_name', 'last_name', 'avatar','birthday', 'height', 'weight', 'position', 'status', 'yt_link']
         widgets = {
             'first_name': forms.TextInput(attrs={'class': 'form-control-update'}),
             'last_name': forms.TextInput(attrs={'class': 'form-control-update'}),
@@ -15,6 +15,7 @@ class PlayerForm(forms.ModelForm):
             'weight': forms.NumberInput(attrs={'class': 'form-control-update'}),
             'position': forms.Select(attrs={'class': 'form-control-update'}),
             'status': forms.Select(attrs={'class': 'form-control-update'}),
+            'yt_link': forms.TextInput(attrs={'class': 'form-control-update'})
         }
     
 class TeamForm(forms.ModelForm):

@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import PlayerListView, PlayerCreateView, PlayerUpdateView, PlayerDeleteView,TeamCreateView
+from .views import PlayerListView, PlayerCreateView, PlayerUpdateView, PlayerDeleteView,PlayerDetailView,TeamCreateView
 
 urlpatterns = [
     path('', PlayerListView.as_view(), name='player_list'),

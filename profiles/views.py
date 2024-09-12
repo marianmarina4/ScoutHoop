@@ -26,4 +26,4 @@ class ProfileDetailView(DetailView):
 
         context['player_list'] = Player.objects.filter(agent=self.get_object())
         return context
-    
+

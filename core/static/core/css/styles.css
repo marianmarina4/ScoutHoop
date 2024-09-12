@@ -336,6 +336,10 @@ nav .button {
     width: 75%;
 }
 
+.no-padd{
+    padding-right: 5rem;
+}
+
 
 
 /*  Profile Detail */

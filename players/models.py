@@ -18,9 +18,15 @@ class Player(models.Model):
     weight = models.DecimalField(max_digits=5, decimal_places=1, default=0.0)
     position = models.CharField(max_length=20, choices=[('base', 'Base'), ('escolta', 'Escolta'), ('alero', 'Alero'), ('alapivot', 'Ala-Pivot'), ('pivot', 'Pivot')])
     status = models.CharField(max_length=20, choices=[('available', 'Disponible'), ('not available', 'No Disponible')])
+    yt_link = models.URLField(blank=True, null=True)
     
     def __str__(self):
         return f'{self.first_name} {self.last_name}'
+    
+    def youtube_embed(self):
+        if self.yt_link:
+            return self.yt_link.replace("watch?v=", "embed/")
+        return None
 
 
 class Team(models.Model):
