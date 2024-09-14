@@ -2,20 +2,21 @@
 {% load static %}
 {% block title %}Email{% endblock %}
 {% block content %}
-<main role="main">
-    <form class="container-form"  action="" method="post">{% csrf_token %}
+  <main role="main">
+    <form class="container-form"  action="" method="post">
+      {% csrf_token %}
       <h3 class="title">Cambiar Email</h3>
-      <p class="form-descriptions"> Por favor, cambie su email a continuación: </p>
+      <p class="form-descriptions">Por favor, cambie su email a continuación:</p>
       <div class="forms-inputs">
-        {{form.email}}
-        {{form.email.errors}}
+        {{ form.email }}
+        {{ form.email.errors }}
         {% if 'update' in request.GET %}
-          <p class="form-descriptions confirm"> Su email se ha actualizado con éxito! </p>
+          <p class="form-descriptions confirm">Su email se ha actualizado con éxito!</p>
         {% endif %}
       </div>
       <div class="confirm-buttons">
         <input type="submit" class="button min" value="Actualizar">
       </div>
     </form>
-</main>
+  </main>
 {% endblock %}

@@ -1,68 +1,93 @@
 {% extends 'core/base.html' %}
 {% load static %}
-{% block title %}{% if player %}Editar jugador{% else %}Agregar jugador{% endif %}{% endblock %}
-{% block content %}
-<main role="main">
-  <form class="container-update" action="" method="post" enctype="multipart/form-data">{% csrf_token %}
-    <div class="container-update-avatar">
-      <!-- Previa del avatar -->
-      <div class="wrap-update-avatar">
-        {% if player.avatar %}
-          <img src="{{player.avatar.url}}" class="avatar">
-          <p>Eliminar Imagen <input type="checkbox" class="form-check-input" id="avatar-clear" name="avatar-clear" /></p>
-        {% else %}
-          <img src="{% static 'registration/img/no-avatar.jpg' %}" class="avatar">
-        {% endif %}
-        <input type="file" name="avatar" class="form-control-file profile-inputs" id="id_avatar">
-      </div>
-    </div>
-      <!-- Formulario -->
-  <div class="profile-update-form">
-    <h3 class="title profile-update-title">{% if player %}Editar jugador{% else %}Agregar jugador{% endif %}</h3>
-    <div class="profile-update-inputs">
-      <div class="profile-update-label">
-        <label>Nombre:</label>
-        {{ form.first_name }}
-      </div>
-      <div class="profile-update-label">
-        <label>Apellido:</label>
-        {{ form.last_name }}
-      </div>
-      <div class="profile-update-label">
-        <label>Nacimiento:</label>
-        {{ form.birthday }}
-      </div>
-      <div class="profile-update-label">
-        <label>Altura (cm):</label>
-        {{ form.height }}
-      </div>
-      <div class="profile-update-label">
-        <label>Peso (kg):</label>
-        {{ form.weight }}
-      </div>
-      <div class="profile-update-label">
-        <label>Estado:</label>
-        {{ form.status }}
-      </div>
-      <div class="profile-update-label">
-        <label>Posición:</label>
-        {{ form.position }}
-      </div>
-      <div class="profile-update-label">
-        <label>Equipos:</label>
-      </div>
-      <div class="profile-update-label">
-        <label>Highlights (YouTube URL):</label>
-        {{ form.yt_link }}
-      </div>
-    </div>
-    <div class="confirm-buttons no-padd">
-        {% if player %}
-          <input type="submit" class="button min" value="Actualizar">
-        {% else %}
-          <input type="submit" class="button min" value="Agregar">
-        {% endif %}
-      </div>
-  </form>
-</main>
+{% block title %}
+  {% if player %}
+    Editar jugador
+  {% else %}
+    Agregar jugador
+  {% endif %}
 {% endblock %}
+{% block content %}
+  <main role="main">
+    <form class="container-update"
+          action=""
+          method="post"
+          enctype="multipart/form-data">
+      {% csrf_token %}
+      <div class="container-update-avatar">
+        <!-- Previa del avatar -->
+        <div class="wrap-update-avatar">
+          {% if player.avatar %}
+            <img src="{{ player.avatar.url }}" class="avatar">
+            <p>
+              Eliminar Imagen
+              <input type="checkbox"
+                     class="form-check-input"
+                     id="avatar-clear"
+                     name="avatar-clear" />
+            </p>
+          {% else %}
+            <img src="{% static 'registration/img/no-avatar.jpg' %}" class="avatar">
+          {% endif %}
+          <input type="file"
+                 name="avatar"
+                 class="form-control-file profile-inputs"
+                 id="id_avatar">
+        </div>
+      </div>
+      <!-- Formulario -->
+      <div class="profile-update-form">
+        <h3 class="title profile-update-title">
+          {% if player %}
+            Editar jugador
+          {% else %}
+            Agregar jugador
+          {% endif %}
+        </h3>
+        <div class="profile-update-inputs">
+          <div class="profile-update-label">
+            <label>Nombre:</label>
+            {{ form.first_name }}
+          </div>
+          <div class="profile-update-label">
+            <label>Apellido:</label>
+            {{ form.last_name }}
+          </div>
+          <div class="profile-update-label">
+            <label>Nacimiento:</label>
+            {{ form.birthday }}
+          </div>
+          <div class="profile-update-label">
+            <label>Altura (cm):</label>
+            {{ form.height }}
+          </div>
+          <div class="profile-update-label">
+            <label>Peso (kg):</label>
+            {{ form.weight }}
+          </div>
+          <div class="profile-update-label">
+            <label>Estado:</label>
+            {{ form.status }}
+          </div>
+          <div class="profile-update-label">
+            <label>Posición:</label>
+            {{ form.position }}
+          </div>
+          <div class="profile-update-label">
+            <label>Equipos:</label>
+          </div>
+          <div class="profile-update-label">
+            <label>Highlights (YouTube URL):</label>
+            {{ form.yt_link }}
+          </div>
+        </div>
+        <div class="confirm-buttons no-padd">
+          {% if player %}
+            <input type="submit" class="button min" value="Actualizar">
+          {% else %}
+            <input type="submit" class="button min" value="Agregar">
+          {% endif %}
+        </div>
+      </form>
+    </main>
+  {% endblock %}

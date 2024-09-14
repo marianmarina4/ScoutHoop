@@ -1,37 +1,45 @@
-
 {% load static %}
 <div class="scroll-container">
-      <div class="list-players">
+    <div class="list-players">
         {% for player in player_list %}
-          <div class="card-players">
-            {% if player.avatar %}
-                <img src="{{player.avatar.url}}"class="list-avatar-players" >
-            {% else %}
-                <img src="{% static 'registration/img/no-avatar.jpg' %}" class="list-avatar-players">
-            {% endif %}
-            <b class="card-player-name"><a class="links" href="{% url 'player_detail' player.pk %}" >{{player.first_name}} {{player.last_name}}</a></b> 
-            <div class="card-player-label">
-                <label><b>Posición:</b></label> 
-                {{player.get_position_display}}
+            <div class="card-players">
+                {% if player.avatar %}
+                    <img src="{{ player.avatar.url }}"class="list-avatar-players">
+                {% else %}
+                    <img src="{% static 'registration/img/no-avatar.jpg' %}"
+                         class="list-avatar-players">
+                {% endif %}
+                <b class="card-player-name"><a class="links" href="{% url 'player_detail' player.pk %}">{{ player.first_name }} {{ player.last_name }}</a></b>
+                <div class="card-player-label">
+                    <label>
+                        <b>Posición:</b>
+                    </label>
+                    {{ player.get_position_display }}
+                </div>
+                <div class="card-player-label">
+                    <label>
+                        <b>Altura:</b>
+                    </label>
+                    {{ player.height }}
+                </div>
+                <div class="card-player-label">
+                    <label>
+                        <b>Clase:</b>
+                    </label>
+                    {{ player.birthday.year }}
+                </div>
+                <div class="card-player-label">
+                    <label>
+                        <b>Agente:</b>
+                    </label>
+                    <a class="links" href="{% url 'profile_detail' player.agent.user %}">{{ player.agent.user.last_name }}</a>
+                </div>
+                <div class="card-player-label">
+                    <label>
+                        <b>Estado:</b>
+                    </label>
+                    {{ player.get_status_display }}
+                </div>
             </div>
-            <div class="card-player-label">
-                <label><b>Altura:</b></label>
-                {{player.height}}
-            </div>
-            <div class="card-player-label">
-                <label><b>Clase:</b></label>
-                {{player.birthday.year}}
-            </div>
-            <div class="card-player-label">
-                <label><b>Agente:</b></label>
-                <a class="links" href="{% url 'profile_detail' player.agent.user %}">
-                {{player.agent.user.last_name}}
-                </a>
-            </div>
-            <div class="card-player-label">
-                <label><b>Estado:</b></label>
-                {{player.get_status_display}}
-            </div>
-          </div>
         {% endfor %}
-      </div>
+    </div>

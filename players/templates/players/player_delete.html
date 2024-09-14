@@ -1,15 +1,18 @@
 {% extends 'core/base.html' %}
 {% block title %}Eliminar jugador{% endblock %}
 {% block content %}
-    <h3 class="title ">Eliminar jugador</h3>
-      <form class="container-add" action="" method="post">{% csrf_token %}
-      <div class="add-form">
-          <div class="add-label">
-            <label>¿Estás seguro de que quieres eliminar <b>"{{ object }}"</b>?</label>
-          </div>
-          <div class="confirm-buttons">
-            <input class="button" type="submit" value="Eliminar" />
-          </div>
-        </div>
-      </form>
+  <h3 class="title ">Eliminar jugador</h3>
+  <form class="container-add" action="" method="post">
+    {% csrf_token %}
+    <div class="add-form">
+      <div class="add-label">
+        <label>
+          ¿Estás seguro de que quieres eliminar <b>"{{ object }}"</b>?
+        </label>
+      </div>
+      <div class="confirm-buttons">
+        <input class="button" type="submit" value="Eliminar" />
+      </div>
+    </div>
+  </form>
 {% endblock %}

@@ -2,54 +2,44 @@
 {% load static %}
 {% block title %}Jugadores{% endblock %}
 {% block content %}
-<main role="main">
-  <div class="container-players">
-
-    <!-- Formulario de Filtro -->
-    <form class="container-filter" method="get" class="filter-form">
-    <h3 class="subtitle no-margin">Filtros</h3>
-      <div class="filter-inputs">
-        <label for="position">Posición:</label>
-        <select name="position" id="position">
-          <option value="">--Todas--</option>
-          {% for value, display in positions %}
-            <option value="{{ value }}">{{ display }}</option>
-          {% endfor %}
-        </select>
-        <label for="agent">Agente:</label>
-        <select name="agent" id="agent">
-          <option value="">--Todos--</option>
-          {% for agent in agents %}
-            <option value="{{ agent.id }}">{{ agent.first_name }} {{ agent.last_name }}</option>
-          {% endfor %}
-        </select>
-        <label for="birthday_year">Clase:</label>
-        <select name="birthday_year" id="birthday_year">
-          <option value="">--Todos--</option>
-          {% for year in years %}
-            <option value="{{ year }}">{{ year }}</option>
-          {% endfor %}
-        </select>
-        <label for="status">Estado:</label>
-        <select name="status" id="status">
-          <option value="">--Todos--</option>
-          {% for value, display in status %}
-            <option value="{{ value }}">{{ display }}</option>
-          {% endfor %}
-        </select>
-        <label for="height">Altura (cm):</label>
-        <select name="height" id="height">
-          <option value="">--Todos--</option>
-          {% for height in heights %}
-            <option value="{{ height }}">{{ height }}</option>
-          {% endfor %}
-        </select>
-      </div>
-      <button class="button min" type="submit">Filtrar</button>
-    </form>
-    
-    <!-- Player Card-->
-    {% include 'players/player_card.html'%}
-  </div>
-</main>
+  <main role="main">
+    <div class="container-players">
+      <!-- Formulario de Filtro -->
+      <form class="container-filter" method="get" class="filter-form">
+        <h3 class="subtitle no-margin">Filtros</h3>
+        <div class="filter-inputs">
+          <label for="position">Posición:</label>
+          <select name="position" id="position">
+            <option value="">--Todas--</option>
+            {% for value, display in positions %}<option value="{{ value }}">{{ display }}</option>{% endfor %}
+          </select>
+          <label for="agent">Agente:</label>
+          <select name="agent" id="agent">
+            <option value="">--Todos--</option>
+            {% for agent in agents %}
+              <option value="{{ agent.id }}">{{ agent.first_name }} {{ agent.last_name }}</option>
+            {% endfor %}
+          </select>
+          <label for="birthday_year">Clase:</label>
+          <select name="birthday_year" id="birthday_year">
+            <option value="">--Todos--</option>
+            {% for year in years %}<option value="{{ year }}">{{ year }}</option>{% endfor %}
+          </select>
+          <label for="status">Estado:</label>
+          <select name="status" id="status">
+            <option value="">--Todos--</option>
+            {% for value, display in status %}<option value="{{ value }}">{{ display }}</option>{% endfor %}
+          </select>
+          <label for="height">Altura (cm):</label>
+          <select name="height" id="height">
+            <option value="">--Todos--</option>
+            {% for height in heights %}<option value="{{ height }}">{{ height }}</option>{% endfor %}
+          </select>
+        </div>
+        <button class="button min" type="submit">Filtrar</button>
+      </form>
+      <!-- Player Card-->
+      {% include 'players/player_card.html' %}
+    </div>
+  </main>
 {% endblock %}
