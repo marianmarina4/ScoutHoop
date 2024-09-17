@@ -30,9 +30,11 @@ class Player(models.Model):
 
 
 class Team(models.Model):
-    team_name = models.CharField(max_length=100)
+    name = models.CharField(max_length=100)
     country = models.CharField(max_length=100)
-    year_played = models.PositiveIntegerField()
 
     def __str__(self):
-        return f'{self.team_name} ({self.country}) - {self.year_played}'
+        return f'{self.name} ({self.country})'
+
+    
+    

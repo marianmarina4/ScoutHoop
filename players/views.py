@@ -7,7 +7,6 @@ from django.urls import reverse_lazy
 from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
-from django import forms
 from .models import Player, Team
 from .forms import PlayerForm, TeamForm
 from django.shortcuts import render
@@ -27,8 +26,6 @@ class PlayerCreateView(CreateView):
     
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        
-        #  Agregamos los equipos al contexto para usarlo fuera
         context['teams'] = Team.objects.all()
         context['players'] = Player.objects.all()  
         return context
@@ -86,7 +83,6 @@ class PlayerListView(ListView):
                 pass
             
             
-        
         # Filtro por año
         birthday_year = self.request.GET.get('birthday_year')
         if birthday_year:

@@ -17,15 +17,15 @@ class PlayerForm(forms.ModelForm):
             'status': forms.Select(attrs={'class': 'form-control-update'}),
             'yt_link': forms.TextInput(attrs={'class': 'form-control-update'})
         }
+        
     
 class TeamForm(forms.ModelForm):
+    
     class Meta:
         model = Team
-        fields = ['team_name', 'country', 'year_played']
+        fields = ['name', 'country']
         widgets = {
-            'team_name': forms.TextInput(attrs={'class': 'form-control'}),
-            'country': forms.TextInput(attrs={'class': 'form-control'}),
-            'year_played': forms.NumberInput(attrs={'class': 'form-control'}),
+            'name': forms.TextInput(attrs={'class': 'form-control-update'}),
+            'country': forms.TextInput(attrs={'class': 'form-control-update'}),
         }
-        
         

@@ -75,6 +75,11 @@
           </div>
           <div class="profile-update-label">
             <label>Equipos:</label>
+            <select name="team">
+              <option value="">Seleccionar equipo existente</option>
+              {% for team in teams %}<option value="{{ team.id }}">{{ team.name }} - {{ team.country }}</option>{% endfor %}
+            </select>
+            <a class="no-margin links" href="{% url 'add_team' %}">Agregar Equipo</a>
           </div>
           <div class="profile-update-label">
             <label>Highlights (YouTube URL):</label>
@@ -91,3 +96,24 @@
       </form>
     </main>
   {% endblock %}
+  <script>
+  document.addEventListener('DOMContentLoaded', function() {
+      const addTeamBtn = document.getElementById('add-team-btn');
+      const teamsDataInput = document.getElementById('teams-data');
+      const selectedTeamsList = document.getElementById('selected-teams-list');
+      
+      let teamsData = [];
+
+      addTeamBtn.addEventListener('click', function() {
+          const team = document.querySelector('[name="team"]').value;
+          const yearPlayed = document.querySelector('[name="year_played"]').value;
+          const country = document.querySelector('[name="country"]').value;
+          
+          if (team && yearPlayed && country) {
+              teamsData.push({team, yearPlayed, country});
+              selectedTeamsList.innerHTML += `<li>${team} - ${yearPlayed} - ${country}</li>`;
+              teamsDataInput.value = JSON.stringify(teamsData);
+          }
+      });
+  });
+  </script>

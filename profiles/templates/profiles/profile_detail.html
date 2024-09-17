@@ -95,13 +95,13 @@
             </div>
         </div>
         <!-- Lista de jugadores -->
+        {% if profile %}
+            <div class="profile-detail-info">
+                <h3 class="subtitle">Jugadores:</h3>
+                {% include 'players/player_card.html' %}
+            </div>
+        {% endif %}
         <div class="profile-detail-info-wrapper">
-            {% if profile %}
-                <div class="profile-detail-info">
-                    <h3 class="subtitle">Jugadores:</h3>
-                    {% include 'players/player_card.html' %}
-                </div>
-            {% endif %}
             {% if player %}
                 <div class="profile-detail-info">
                     <h3 class="subtitle">Equipos:</h3>
